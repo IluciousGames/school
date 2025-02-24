@@ -1,1 +1,94 @@
+import { useEffect } from "react";
+import { motion } from "framer-motion";
+import "tailwindcss/tailwind.css";
 
+export default function VaticanHistory() {
+  return (
+    <div className="bg-gradient-to-b from-gray-900 to-gray-700 min-h-screen text-white p-8">
+      <motion.h1
+        className="text-4xl font-bold text-center mb-6"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        Vatican City & Christianity
+      </motion.h1>
+
+      <Section title="Vatican City" content={vaticanFacts} />
+      <Section title="History of Christianity" content={christianityFacts} />
+      <Section title="Buenos Aires" content={buenosAiresFacts} />
+      <Section title="St. Francis of Assisi" content={stFrancisFacts} />
+    </div>
+  );
+}
+
+function Section({ title, content }) {
+  return (
+    <motion.div
+      className="bg-gray-800 p-6 rounded-2xl shadow-lg mb-8"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
+      <h2 className="text-2xl font-semibold mb-4 border-b border-gray-500 pb-2">{title}</h2>
+      <ul className="list-disc list-inside">
+        {content.map((fact, index) => (
+          <motion.li 
+            key={index} 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+          >
+            {fact}
+          </motion.li>
+        ))}
+      </ul>
+    </motion.div>
+  );
+}
+
+const vaticanFacts = [
+  "A city-state is a landlocked, independent country within Rome, Italy.",
+  "Population: 764 (latest data).",
+  "Size: 0.44 sq km (smallest country in the world).",
+  "A theocracy is governed by divine guidance.",
+  "Famous resident: The Pope.",
+  "Founded on February 11, 1929 (Lateran Treaty).",
+  "No prison; offenders sent to Italian jails.",
+  "Only ATM with Latin instructions.",
+  "High crime rate due to tourist pickpocketing.",
+  "Own postal service, faster than Italy's."
+];
+
+const christianityFacts = [
+  "Began in the 1st century AD.",
+  "Founder: Jesus Christ.",
+  "Followers believe Jesus is the Son of God and the Messiah.",
+  "Early followers were Jewish Christians.",
+  "Separated from Judaism due to belief in Jesus as the Messiah.",
+  "Legalized in 313 by Emperor Constantine (Edict of Milan)."
+];
+
+const buenosAiresFacts = [
+  "Pope Francis was born here.",
+  "Country: Argentina.",
+  "Official Name: Ciudad Autónoma de Buenos Aires.",
+  "Founded: 1536, re-established 1580.",
+  "Residents are called porteños.",
+  "Has the widest avenue in the world (Avenida 9 de Julio).",
+  "Most bookstores per capita globally.",
+  "Birthplace of tango.",
+  "Strong European influence, called 'Paris of South America'."
+];
+
+const stFrancisFacts = [
+  "Birth name: Giovanni di Pietro di Bernardone.",
+  "Born in Italy (1181/1182).",
+  "Died on October 3, 1226.",
+  "Founded the Franciscan Order.",
+  "Patron saint of animals and the environment.",
+  "Renounced wealth to live in poverty.",
+  "Believed to have received the stigmata.",
+  "Created the first nativity scene (1223).",
+  "Preached to animals, emphasizing love for nature."
+];
